@@ -1,0 +1,5 @@
+bin
+mkfcenv.tar.gz
+.env
+.shared
+.db

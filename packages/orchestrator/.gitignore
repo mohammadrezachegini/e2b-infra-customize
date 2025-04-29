@@ -1,0 +1,7 @@
+*.out
+.plan
+alloc
+plugin
+orchestrator
+bin
+.shared
