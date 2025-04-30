@@ -61,9 +61,12 @@ resource "google_compute_instance_group_manager" "server_cluster" {
 }
 
 data "google_compute_image" "source_image" {
+
   #family = var.image_family
-   family  = "ubuntu-2004-lts"
-   project = "ubuntu-os-cloud"
+  #  family  = "ubuntu-2004-lts-nested"
+  name  = "ubuntu-2004-nested"
+  project = "sandbox-457518"
+  #  project = "ubuntu-os-cloud"
 }
 
 resource "google_compute_instance_template" "server" {
@@ -98,6 +101,7 @@ resource "google_compute_instance_template" "server" {
     source_image = data.google_compute_image.source_image.self_link
     disk_size_gb = var.root_volume_disk_size_gb
     disk_type    = var.root_volume_disk_type
+
   }
 
   network_interface {

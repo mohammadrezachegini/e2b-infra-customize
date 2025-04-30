@@ -128,64 +128,64 @@ module "client_proxy" {
  # orchestration_repository_name = module.init.orchestration_repository_name
 }
 
-module "nomad" {
-  source = "./packages/nomad"
+# module "nomad" {
+#   source = "./packages/nomad"
 
-  prefix              = var.prefix
-  gcp_project_id      = var.gcp_project_id
-  gcp_region          = var.gcp_region
-  gcp_zone            = var.gcp_zone
-  client_machine_type = var.client_machine_type
+#   prefix              = var.prefix
+#   gcp_project_id      = var.gcp_project_id
+#   gcp_region          = var.gcp_region
+#   gcp_zone            = var.gcp_zone
+#   client_machine_type = var.client_machine_type
 
-  consul_acl_token_secret = module.init.consul_acl_token_secret
-  nomad_acl_token_secret  = module.init.nomad_acl_token_secret
-  nomad_port              = var.nomad_port
-  otel_tracing_print      = var.otel_tracing_print
+#   consul_acl_token_secret = module.init.consul_acl_token_secret
+#   nomad_acl_token_secret  = module.init.nomad_acl_token_secret
+#   nomad_port              = var.nomad_port
+#   otel_tracing_print      = var.otel_tracing_print
 
-  clickhouse_connection_string = "clickhouse.service.consul:9000"
-  clickhouse_username          = "clickhouse"
-  clickhouse_password          = module.init.clickhouse_password_secret_data
-  clickhouse_database          = "default"
+#   clickhouse_connection_string = "clickhouse.service.consul:9000"
+#   clickhouse_username          = "clickhouse"
+#   clickhouse_password          = module.init.clickhouse_password_secret_data
+#   clickhouse_database          = "default"
 
-  api_machine_count                         = var.api_cluster_size
-  logs_proxy_address                        = ""
-  api_port                                  = var.api_port
-  environment                               = var.environment
-  google_service_account_key                = module.init.google_service_account_key
-  api_secret                                = module.api.api_secret
-  #custom_envs_repository_name               = module.api.custom_envs_repository_name
-  custom_envs_repository_name = "fake-repository-name"
-  postgres_connection_string_secret_name    = module.api.postgres_connection_string_secret_name
-  supabase_jwt_secrets_secret_name          = var.supabase_jwt_secrets_secret_name
-  posthog_api_key_secret_name               = var.posthog_api_key_secret_name
-  analytics_collector_host_secret_name      = module.init.analytics_collector_host_secret_name
-  analytics_collector_api_token_secret_name = module.init.analytics_collector_api_token_secret_name
-  api_admin_token                           = module.api.api_admin_token
-  redis_url_secret_version                  = module.api.redis_url_secret_version
+#   api_machine_count                         = var.api_cluster_size
+#   logs_proxy_address                        = ""
+#   api_port                                  = var.api_port
+#   environment                               = var.environment
+#   google_service_account_key                = module.init.google_service_account_key
+#   api_secret                                = module.api.api_secret
+#   #custom_envs_repository_name               = module.api.custom_envs_repository_name
+#   custom_envs_repository_name = "fake-repository-name"
+#   postgres_connection_string_secret_name    = module.api.postgres_connection_string_secret_name
+#   supabase_jwt_secrets_secret_name          = var.supabase_jwt_secrets_secret_name
+#   posthog_api_key_secret_name               = var.posthog_api_key_secret_name
+#   analytics_collector_host_secret_name      = module.init.analytics_collector_host_secret_name
+#   analytics_collector_api_token_secret_name = module.init.analytics_collector_api_token_secret_name
+#   api_admin_token                           = module.api.api_admin_token
+#   redis_url_secret_version                  = module.api.redis_url_secret_version
 
-  client_proxy_port                = var.client_proxy_port
-  client_proxy_health_port         = var.client_proxy_health_port
+#   client_proxy_port                = var.client_proxy_port
+#   client_proxy_health_port         = var.client_proxy_health_port
 
-  domain_name = var.domain_name
+#   domain_name = var.domain_name
 
-  logs_health_proxy_port = var.logs_health_proxy_port
-  logs_proxy_port        = var.logs_proxy_port
+#   logs_health_proxy_port = var.logs_health_proxy_port
+#   logs_proxy_port        = var.logs_proxy_port
 
-  loki_bucket_name  = module.buckets.loki_bucket_name
-  loki_service_port = var.loki_service_port
+#   loki_bucket_name  = module.buckets.loki_bucket_name
+#   loki_service_port = var.loki_service_port
 
-  orchestrator_port           = var.orchestrator_port
-  orchestrator_proxy_port     = var.orchestrator_proxy_port
-  fc_env_pipeline_bucket_name = module.buckets.fc_env_pipeline_bucket_name
+#   orchestrator_port           = var.orchestrator_port
+#   orchestrator_proxy_port     = var.orchestrator_proxy_port
+#   fc_env_pipeline_bucket_name = module.buckets.fc_env_pipeline_bucket_name
 
-  template_manager_port          = var.template_manager_port
-  template_bucket_name           = module.buckets.fc_template_bucket_name
-  template_manager_machine_count = var.build_cluster_size
+#   template_manager_port          = var.template_manager_port
+#   template_bucket_name           = module.buckets.fc_template_bucket_name
+#   template_manager_machine_count = var.build_cluster_size
 
-  redis_port = var.redis_port
+#   redis_port = var.redis_port
 
-  launch_darkly_api_key_secret_name = module.init.launch_darkly_api_key_secret_version.secret
-}
+#   launch_darkly_api_key_secret_name = module.init.launch_darkly_api_key_secret_version.secret
+# }
 
 module "redis" {
   source = "./terraform/redis"
